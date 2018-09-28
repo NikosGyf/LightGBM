@@ -182,9 +182,15 @@ class TestSklearn(unittest.TestCase):
         # we cannot use `check_estimator` directly since there is no skip test mechanism
         for name, estimator in ((lgb.sklearn.LGBMClassifier.__name__, lgb.sklearn.LGBMClassifier),
                                 (lgb.sklearn.LGBMRegressor.__name__, lgb.sklearn.LGBMRegressor)):
+            if sk_version < '0.19.0':
+                from sklearn.utils.estimator_checks import check_no_fit_attributes_set_in_init
+                check_no_fit_attributes_set_in_init(name, estimator)
             check_parameters_default_constructible(name, estimator)
             # we cannot leave default params (see https://github.com/Microsoft/LightGBM/issues/833)
             estimator = estimator(min_child_samples=1, min_data_in_bin=1)
+            if sk_version >= '0.20.0':
+                from sklearn.utils.estimator_checks import check_no_attributes_set_in_init
+                check_no_attributes_set_in_init(name, estimator)
             for check in _yield_all_checks(name, estimator):
                 check_name = check.func.__name__ if hasattr(check, 'func') else check.__name__
                 if check_name == 'check_estimators_nan_inf':
