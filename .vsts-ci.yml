@@ -9,7 +9,7 @@ phases:
     COMPILER: gcc
     _PREVIEW_VSTS_DOCKER_IMAGE: ubuntu:14.04
   queue:
-    name: 'win1803'
+    name: 'Hosted Windows Container'
     parallel: 6
     matrix:
       regular:
@@ -65,7 +65,7 @@ phases:
   variables:
     COMPILER: clang
   queue:
-    name: 'Hosted macOS Preview'
+    name: 'Hosted macOS'
     parallel: 3
     matrix:
       regular:
