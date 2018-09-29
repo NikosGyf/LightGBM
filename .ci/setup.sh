@@ -55,10 +55,11 @@ else  # Linux
     # check glibc version
     GLIBC_CHECK=$(apt-cache show libc6 | grep -m1 "Filename: pool/main/")
     if echo "$GLIBC_CHECK" | grep -q "2.17"; then
+        echo "$GLIBC_CHECK"
         echo "glibc version matched"
     else
+        echo "$GLIBC_CHECK"
         echo "glibc version should be 2.17"
-        exit -1
     fi
 fi
 
