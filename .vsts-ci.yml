@@ -7,7 +7,7 @@ phases:
 ###########################################
   variables:
     COMPILER: gcc
-    _PREVIEW_VSTS_DOCKER_IMAGE: ubuntu:14.04
+    _PREVIEW_VSTS_DOCKER_IMAGE: microsoft/dotnet-buildtools-prereqs:centos-7-d485f41-20173404063424
   queue:
     name: 'Hosted Windows Container'
     parallel: 6
