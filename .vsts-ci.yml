@@ -9,7 +9,7 @@ phases:
     COMPILER: gcc
     _PREVIEW_VSTS_DOCKER_IMAGE: ubuntu:14.04
   queue:
-    name: 'Hosted Linux Preview'
+    name: 'DotNet-Build'
     parallel: 6
     matrix:
       regular:
