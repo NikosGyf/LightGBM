@@ -52,8 +52,14 @@ else  # Linux
     if [[ $TRAVIS == "true" ]]; then
         wget -O conda.sh https://repo.continuum.io/miniconda/Miniconda${PYTHON_VERSION:0:1}-latest-Linux-x86_64.sh
     fi
-    # print glibc version
-    apt-cache show libc6 | grep "Filename: pool/main/"
+    # check glibc version
+    GLIBC_CHECK=$(apt-cache show libc6 | grep -m1 "Filename: pool/main/")
+    if echo "$GLIBC_CHECK" | grep -q "2.17"; then
+        echo "glibc version matched"
+    else
+        echo "glibc version should be 2.17"
+        exit -1
+    fi
 fi
 
 if [[ $TRAVIS == "true" ]]; then
