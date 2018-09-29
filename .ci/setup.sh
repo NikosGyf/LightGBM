@@ -52,6 +52,8 @@ else  # Linux
     if [[ $TRAVIS == "true" ]]; then
         wget -O conda.sh https://repo.continuum.io/miniconda/Miniconda${PYTHON_VERSION:0:1}-latest-Linux-x86_64.sh
     fi
+    # print glibc version
+    apt-cache show libc6 | grep "Filename: pool/main/"
 fi
 
 if [[ $TRAVIS == "true" ]]; then
